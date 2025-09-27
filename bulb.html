@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img id="myImage" src="./srcof.jpg" style="width:100px">
+    <button onclick="change()">Click Here</button>
+    <script>
+        function change(){
+            let image = document.getElementById('myImage');
+            if (image.src.match("./src1.jpg")){
+                image.src="./srcof.jpg";
+            } else {
+                image.src="./src1.jpg";
+            }
+        }
+    </script>
+</body>
+</html>
