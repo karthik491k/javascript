@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Synchronous vs Asynchronous Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+      background-color: #f7f8fa;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      background-color: #0078ff;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005dc9;
+    }
+    #output {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+    }
+    #spinner {
+      margin-top: 15px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧠 Synchronous vs Asynchronous in Frontend</h1>
+  <p>Click the buttons below to see the difference.</p>
+
+  <button onclick="runSynchronous()">Run Synchronous Task</button>
+  <button onclick="runAsynchronous()">Run Asynchronous Task</button>
+
+  <div id="output"></div>
+  <div id="spinner">⏳ Loading...</div>
+
+  <script>
+    // --- Synchronous Example ---
+    function runSynchronous() {
+      document.getElementById("output").innerText = "Running synchronous task...";
+      document.getElementById("spinner").style.display = "none";
+
+      // Simulate a long-running blocking task
+      const start = Date.now();
+      while (Date.now() - start < 3000) {
+        // Loop for 3 seconds (blocking)
+      }
+
+      document.getElementById("output").innerText = "✅ Synchronous task completed!";
+    }
+
+    // --- Asynchronous Example ---
+    function runAsynchronous() {
+      document.getElementById("output").innerText = "Running asynchronous task...";
+      document.getElementById("spinner").style.display = "block";
+
+      // Simulate an async task (like API call)
+      setTimeout(() => {
+        document.getElementById("spinner").style.display = "none";
+        document.getElementById("output").innerText = "✅ Asynchronous task completed!";
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

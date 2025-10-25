@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Synchronous & Asynchronous Demo</title>
+  <style>
+    body { font-family: Arial; text-align: center; padding: 40px; background: #f7f8fa; }
+    h1 { margin-bottom: 10px; }
+    button { margin: 5px; padding: 10px 15px; font-size: 16px; cursor: pointer; }
+    #output { margin-top: 20px; background: #fff; padding: 20px; width: 70%; margin-inline: auto; border-radius: 8px; text-align: left; font-size: 17px; }
+  </style>
+</head>
+<body>
+  <h1>Synchronous and Asynchronous Communication</h1>
+  <p>Click a button to see how they work:</p>
+
+  <button onclick="syncBooking()">Synchronous Booking</button>
+  <button onclick="asyncCallback()">Async with Callback</button>
+  <button onclick="asyncPromise()">Async with Promise</button>
+
+  <div id="output"></div>
+
+  <script>
+    const out = document.getElementById("output");
+
+    // 1️⃣ Synchronous (Blocking)
+    function syncBooking() {
+      out.innerHTML = "Starting synchronous booking...<br><br>Processing the ticket...<br>";
+      for (let i = 0; i < 2e9; i++) {} // Simulate delay
+      out.innerHTML += "<br>Ticket booked successfully!<br><br>You can now proceed with your plans.";
+    }
+
+    // 2️⃣ Asynchronous with Callback
+    function asyncCallback() {
+      out.innerHTML = "Starting asynchronous booking...<br><br>";
+      setTimeout(() => {
+        out.innerHTML += "Processing the ticket...<br><br>";
+        setTimeout(() => {
+          out.innerHTML += "Ticket booked successfully!<br><br>You can now proceed with your plans.";
+        }, 2000);
+      }, 1000);
+    }
+
+    // 3️⃣ Asynchronous with Promise
+    function asyncPromise() {
+      out.innerHTML = "Starting asynchronous booking...<br><br>";
+
+      function bookTicket() {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve("Ticket booked successfully!");
+          }, 2000);
+        });
+      }
+
+      out.innerHTML += "Processing the ticket...<br><br>";
+      bookTicket().then((message) => {
+        out.innerHTML += message + "<br><br>You can now proceed with your plans.";
+      });
+    }
+    
+  </script>
+</body>
+</html>
